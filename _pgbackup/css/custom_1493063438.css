@@ -1,0 +1,11 @@
+
+
+/* Put your custom styles here */
+
+.label.label-default{
+	font-size: 12px;
+}
+
+.col-md-3{
+	box-shadow: 2px 2px;
+}

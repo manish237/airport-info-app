@@ -1,0 +1,55 @@
+High Level Requirements
+
+We are creating a single page web app with following functionality
+
+1. Provide an input text box where user can input a Airport Code (US Only). 
+1.1 Input field should be made mandatory
+1.2 Input airport code should be checked for validity
+2. On submitting the Airport Code the app should display following information about the status of flights and conditions at the airport.
+2.1	Flight Status
+2.1.1 Average Flight Delay Time
+2.1.2 Delay type
+2.1.3 Reason of Delay
+2.2 Weather Conditions
+2.2.1 Current Temperature at airport
+2.2.2 Current Wind Conditions at airport
+2.2.3 Current Pilot Visibility at airport
+2.2.4 Current Weather Conditions at airport
+
+
+Low Level Design
+
+1. Input validation
+1.1 The input field should be made mandatory using require property
+1.1 The input airport code will be validated against a master JSON list like https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json
+1.2 If the input is invalid, display error message - "Invalid Airport Code!!"
+
+2. Display of the data
+2.1 The data for a specific airport code will be fetched from FAA public API - http://services.faa.gov/airport/status/<airport code input>?format=JSON, e.g http://services.faa.gov/airport/status/sfo?format=JSON
+2.2 The service returns set of fields which can be mapped as below
+2.2.1	Flight Status
+2.2.1.1 Average Flight Delay Time - "status"."avgDelay" e.g. "4 hours and 12 minutes"
+2.2.1.2 Delay type - "status"."type" e.g. "Ground Delay"
+2.2.1.3 Reason of Delay	-  "status"."reason" e.g. "RWY-TAXI / CONSTRUCTION",
+2.2.2 	Weather Conditions
+2.2.2.1 Current Temperature at airport - "weather"."temp" e.g. "60.0 F (15.6 C)"
+2.2.2.2 Current Wind Conditions at airport - "weather"."wind" e.g. "West at 23.0mph"
+2.2.2.3 Current Pilot Visibility at airport - "weather"."visibility" e.g. "10"
+2.2.2.4 Current Weather Conditions at airport - "weather"."weather" e.g. "Partly Cloudy and Breezy"
+2.2.2.5 <Developer Enhancement> Add an image reflecting weather condition at the airport.
+2.2.3	<Developer Enhancement> Add other details related to the airport -  This is based on the master JSON airport list we have and we display following information
+2.2.3.1 Airport Name e.g "San Francisco International Airport"
+2.2.3.2 Airport Location (city, state, country) - e.g. "San Francisco","California","United States"
+2.2.3.3 Airport Geo Markers - e.g. "37.6148" lat ,  "-122.392" lon
+2.2.3.4 Airport Elevation - e.g "12" feet
+
+3. <Developer Enhancement> We display the map representing users' current location (this applies to landing page) OR the airport code provided (after the airport details are loaded) with markers for "points of interest"
+3.1 This is accomplished using Google Map API (to load the map based on current location (long/lat) ) and Google Places API (to load Point of Interests data for the location)
+3.2 We will be using Googles' JS plugin to invoke different google API. This requires including following JS in HTML script tag
+https://maps.google.com/maps/api/js?key=<API_KEY>&libraries=places
+3.3 We invoke Map API as below
+	google.maps.Map(<target html placeholder>, <mapOptions>)
+3.4 To get markers for "Points of interest"	for a location
+3.4.1 Load all "Points of Interest" using google.maps.places.PlacesService(map).nearbySearch
+3.4.2 Create Markers for the places returned after above step using google.maps.Marker object
+3.4.3 Add a listner to the marker so that when user clicks on the marker it displays name of the place using google.maps.event.addListener

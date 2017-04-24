@@ -1,0 +1,7 @@
+1. is your flight delayed ?? Take your frustration out on the game
+2. news about the airport (news feed)
+3. people you know from social media (stuck on airport)
+4. interactive map showing info about airport str
+	things to do near by
+5. get specific fligt details.
+6. Add markers for nearby facilities with reviews

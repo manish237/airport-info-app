@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  /*border: solid 1px;*/
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  /*border: solid 1px;*/
+}
+
+button, input[type="text"] {
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  border: solid 1px;
+
+}
+
+.video-list-item{
+  display: inline;
+}
+
+.video-img{
+  padding-left: 10px;
+}
+
+img{
+  width: 50px;
+  height: 50px;
+}
+
+
+
+.video-info {
+  color: red;
+  padding-left: 70px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.video-nav{
+  display: block;
+  padding-top:10px;
+  padding-left:200px;
+  padding-bottom:10px;
+
+}
+.channel-item{
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+}
