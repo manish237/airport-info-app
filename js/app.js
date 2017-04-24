@@ -3,7 +3,7 @@
  Object to hold search params for API call
  ************************************************************/
 var searchRequest = {
-    url:'http://services.faa.gov/airport/status/',
+    url:'https://services.faa.gov/airport/status/',
     format:'JSON',
     apCode:'',
 }
