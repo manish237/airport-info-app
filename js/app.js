@@ -9,16 +9,15 @@ var searchRequest = {
 }
 
 /***********************************************************
- UI Renderer using the data returned.
- ************************************************************/
-
-/***********************************************************
- Processor function to load data from API
+ Function to
+ 1. Fill out UI labels with the data returned from the API
+ 2. Show success message.
+ 3. Re-load map based on airport's geo coordinates
  ************************************************************/
 function renderData(apiData,localData)
 {
-    console.log(apiData)
-    console.log(localData)
+    //console.log(apiData)
+    //console.log(localData)
 
     //set api data
 
@@ -51,12 +50,22 @@ function renderData(apiData,localData)
     initMap($('#mapinfo'),localData.lon,localData.lat)
 }
 
+/***********************************************************
+ Function to load the data from FAA API for given airport code.
+ 1. On successful load, calls function to render UI and render Map.
+ ************************************************************/
 function processData(data,localData) {
     $.getJSON(searchRequest.url+data.toUpperCase(), {format: 'JSON'}, function(apiData){
         renderData(apiData,localData)
     });
 }
 
+/***********************************************************
+Function to check if the input airport code is valid
+ 1. Check the airport code against local file
+ 2. If the code is invalid show error and exit
+ 3. If the code is valid, call function to load the details from external API
+ ************************************************************/
 function processInput(apCode)
 {
     $.getJSON("airports.json",function(json){
@@ -65,13 +74,13 @@ function processInput(apCode)
                     o.code===apCode.toUpperCase()
         })
         if(filteredApCodes.length===0) {
-            console.log('invalid')
+            //console.log('invalid')
             $('#invalidmsg').show()
             $('#unknownmsg').hide()
             $('#successmsg').hide()
         }
         else {
-            console.log('vallid')
+            //console.log('vallid')
             $('#invalidmsg').hide()
             $('#unknownmsg').hide()
             $('#successmsg').hide()
@@ -80,8 +89,9 @@ function processInput(apCode)
         // console.log(filteredApCodes)
     })
 }
+
 /***********************************************************
-Event Listeners
+Event Listeners for submit button click
  ************************************************************/
 
 //Navigation Listener for Prev link
@@ -94,16 +104,33 @@ $('#submitbtn').click(function (e) {
 })
 
 
-//Initialization on page load
+/******************************************************************
+ Initializing the map with user's current location geo coordinates
+ ******************************************************************/
+
+
 function initCurrLocationMap(position)
 {
     //console.log($('.map'))
     initMap($('#mapinfo'),position.coords.longitude,position.coords.latitude)
 }
+
+/******************************************************************
+ Initializing the map with default hard coded location geo coordinates
+ ******************************************************************/
+
+
 function initDefaultMap()
 {
     initMap($('#mapinfo'),-122.392,37.6148)
 }
+
+
+/******************************************************************
+Initializing the page here. We are hiding different alert elements
+ and information row.
+ Also populating map element with current location and points of interest
+******************************************************************/
 
 $(document).ready(function() {
 
