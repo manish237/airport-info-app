@@ -48,6 +48,7 @@ function renderData(apiData,localData)
     $('#successmsg').show()
 
     initMap($('#mapinfo'),localData.lon,localData.lat)
+    $('#mapHead')[0].innerHTML = "Places of interest near the Airport"
 }
 
 /***********************************************************
@@ -97,11 +98,17 @@ Event Listeners for submit button click
 //Navigation Listener for Prev link
 $('#submitbtn').click(function (e) {
     e.preventDefault()
+    var regex = new RegExp("[A-Za-z]{3}")
+    if($('#airportcode').val().length>3 || !$('#airportcode').val().match(regex))
+        $('#invalidmsg').show()
+
+
     $('#invalidmsg').hide()
     $('#unknownmsg').hide()
     $('#successmsg').hide()
     processInput($('#airportcode').val())
 })
+
 
 
 /******************************************************************
@@ -112,6 +119,7 @@ $('#submitbtn').click(function (e) {
 function initCurrLocationMap(position)
 {
     //console.log($('.map'))
+    $('#mapHead')[0].innerHTML = "Places of interest near you"
     initMap($('#mapinfo'),position.coords.longitude,position.coords.latitude)
 }
 

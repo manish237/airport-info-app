@@ -1,4 +1,30 @@
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
 
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.poster
+{
+    background-image: url('../images/bg-airport-08.jpg');
+    background-size: cover;
+    color: #000000;
+    background-position: 50% 100%;
+}
 
 /*
 Template Name: Bootstrap Starter Kit - Style Library 1
@@ -919,7 +945,8 @@ p
     font-size: 14px;
     line-height: 1.6;
     margin: 15px 0;
-    color: #515157;
+    color: #1c1c30;
+    font-weight: bold;
 }
 
 .lead
@@ -1991,24 +2018,61 @@ fieldset[disabled] .form-control
 .bg-color-01
 {
     background-color: #D9F3E3;
-    height: 500px;
+    display: inline-block;
+    position: relative;
+    max-height: 400px;
+    min-height: 400px;
 }
 
 .bg-color-02
 {
     background-color: #EB9BA3;
-    height: 500px;
+    height: 400px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .bg-color-03
 {
     background-color: #FAE7C0;
-    height: 500px;
+    min-height: 400px;
+    max-height: 400px;
 }
 
 .bg-color-04
 {
     color: #575558;
     background-color: #575558;
+}
+
+.lb-style
+{
+    font-size: 12px;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.sub-header
+{
+    font-weight: bold;
+}
+
+.font-color
+{
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.text-style
+{
+}
+
+.info-label-style
+{
+}
+
+.sub-header-bg
+{
+    background-color: #679bad;
 }
 

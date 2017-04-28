@@ -9,3 +9,7 @@
 .col-md-3{
 	box-shadow: 2px 2px;
 }
+
+.jumbotron{
+	background-size: cover;
+}
